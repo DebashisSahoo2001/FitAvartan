@@ -1,0 +1,22 @@
+/* Tailwind configuration (replace with your actual Tailwind setup) */
+
+.container {
+    @apply max-w-3xl mx-auto px-4;
+  }
+  
+  header {
+    @apply flex items-center justify-between;
+  }
+  
+  .text-gray-700 {
+    @apply text-gray-700;
+  }
+  
+  .grid {
+    @apply grid gap-4;
+  }
+  
+  .bg-gray-100 {
+    @apply bg-gray-100;
+  }
+  

@@ -1,0 +1,117 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/output.css"> 
+</head>
+<body>
+  <div class="container mx-auto px-4 mt-8">
+    <header class="flex items-center justify-between mb-8">
+      <h1 class="text-2xl font-semibold">My Profile</h1>
+      </header>
+
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-2">About Me</h2>
+      <p class="text-gray-700">
+        </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-2">Statistics</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-gray-100 p-4 rounded shadow">
+          <h3 class="text-sm font-medium mb-2">Streak</h3>
+          <p class="text-lg font-bold">
+            </p>
+        </div>
+        <div class="bg-gray-100 p-4 rounded shadow">
+          <h3 class="text-sm font-medium mb-2">Calories Burned</h3>
+          <p class="text-lg font-bold">
+            </p>
+        </div>
+        <div class="bg-gray-100 p-4 rounded shadow">
+          <h3 class="text-sm font-medium mb-2">Total Workout Duration</h3>
+          <p class="text-lg font-bold">
+            </p>
+        </div>
+        <div class="bg-gray-100 p-4 rounded shadow">
+          <h3 class="text-sm font-medium mb-2">Average Accuracy</h3>
+          <p class="text-lg font-bold">
+            </p>
+        </div>
+      </div>
+    </section>
+    <form action="/app" method="GET"> <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Go to App
+    </button>
+</form>
+
+    </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        // const letsStartButton = document.getElementById('letsStartButton');
+        //   letsStartButton.addEventListener('click', function() {
+        //     console.log('Button clicked!'); 
+        //       window.location.href = '/app';
+        //  });
+         document.addEventListener('DOMContentLoaded', function() { 
+    const letsStartButton = document.getElementById('letsStartButton');
+    // ... rest of your code
+    letsStartButton.addEventListener('click', function() {
+            console.log('Button clicked!'); 
+              window.location.href = '/app';
+         });
+});
+
+     </script>
+     
+  </head>
+  <body class="min-h-screen">
+    <div class="flex min-h-screen">
+      <div class="w-1/4 bg-gray-200">
+        <div class="p-4">
+          <h1 class="text-2xl font-bold mb-4">Overview</h1>
+          <ul class="mb-4">
+            <li class="py-2">Schedule</li>
+            <li class="py-2">Performance</li>
+          </ul>
+          <div class="flex justify-center ">
+            <button class="bg-blue-500 text-white py-2 px-4 rounded">Sign Out</button>
+          </div>
+        </div>
+      </div>
+      <div class="w-3/4 bg-white p-8">
+        <div class="flex justify-between mb-8">
+          <div class="w-1/4 bg-blue-500 text-white p-4 mr-4">
+            <h2 class="text-2xl font-bold">Streak</h2>
+            <p class="text-4xl font-bold">10</p>
+          </div>
+          <div class="w-1/4 bg-blue-500 text-white p-4 mr-4">
+            <h2 class="text-2xl font-bold">Calorie Burn</h2>
+            <p class="text-4xl font-bold">500</p>
+          </div>
+          <div class="w-1/4 bg-blue-500 text-white p-4 mr-4">
+            <h2 class="text-2xl font-bold">Duration</h2>
+            <p class="text-4xl font-bold">2 hours</p>
+          </div>
+          <div class="w-1/4 bg-blue-500 text-white p-4">
+            <h2 class="text-2xl font-bold">Accuracy</h2>
+            <p class="text-4xl font-bold">90%</p>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <button id="letsStartButton" class="bg-blue-500 text-white py-2 px-4 rounded">Let's Start</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
