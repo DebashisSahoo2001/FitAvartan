@@ -53,6 +53,11 @@ const connectDB = require('./db');
 const authRoutes = require('./routes/auth'); 
 const path = require('path');
 
+const mongoose = require('mongoose'); // Add mongoose
+const User = require('./models/user.js');
+const Score = require('./models/score.js');
+
+
 const app = express();
 
 // Connect to MongoDB
@@ -92,6 +97,24 @@ app.get('/app', (req, res) => {
         res.redirect('/auth/login'); // Redirect to login within the '/auth' routes
     }
 });
+
+
+app.post('/save-score', async (req, res) => {
+    try {
+        // Assuming you have an authenticated user (req.user)
+
+        const newScore = new Score({
+            // ... score data ...
+            userId: req.user._id 
+        });
+        await newScore.save(); 
+        res.status(201).send('Score saved!');  
+    } catch (error) {
+        console.error('Error saving score:', error);
+        res.status(500).send('Error saving score.');
+    }
+});
+
 
 // Start the server
 const PORT = process.env.PORT || 3000; 

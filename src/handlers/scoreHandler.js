@@ -37,7 +37,7 @@ export default class ScoreHandler {
     }
   };
 
-  addNewData = (inputData) => {
+  addNewData = async(inputData) => {
     this.DBWOScore.push({
       id: +new Date(),
       nameWorkout: inputData.nameWorkout,
@@ -47,6 +47,23 @@ export default class ScoreHandler {
     });
 
     this.saveToLocalStorage();
+
+      // Send score data to server
+      try {
+        const response = await fetch('/save-score', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(inputData),
+        });
+
+        if (!response.ok) {
+          throw new Error('Error saving score on server');
+        }
+      } catch (error) {
+        console.error('Error saving data to server:', error);
+        // Handle the error appropriately
+      }
+
   };
 
   getBestScoreByReps = () => {
