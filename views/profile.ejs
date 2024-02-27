@@ -52,6 +52,11 @@
     </div>
 </body>
 </html> -->
+
+
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -70,7 +75,28 @@
             console.log('Button clicked!'); 
               window.location.href = '/app';
          });
+         fetch('/fetch-scores')
+                .then(response => response.json())
+                .then(scores => {
+                    const scoresContainer = document.getElementById('scores-container');
+                    scoresContainer.innerHTML = ''; // Clear the "Loading..." message
+
+                    if (scores.length > 0) {
+                        const list = document.createElement('ul');
+                        scores.forEach(score => {
+                            const item = document.createElement('li');
+                            item.textContent = `Workout: ${score.nameWorkout}, Duration: ${score.duration}, Reps: ${score.repetition}, Date: ${score.date}`;
+                            list.appendChild(item);
+                        });
+                        scoresContainer.appendChild(list);
+                    } else {
+                        scoresContainer.textContent = 'No scores found.';
+                    }
+                })
+                .catch(error => console.error('Error fetching scores:', error));
 });
+
+
 
      </script>
      
@@ -108,6 +134,9 @@
             <p class="text-4xl font-bold">90%</p>
           </div>
         </div>
+        <div id="scores-container">
+          Loading scores... 
+      </div>
         <div class="flex justify-center">
           <button id="letsStartButton" class="bg-blue-500 text-white py-2 px-4 rounded">Let's Start</button>
         </div>

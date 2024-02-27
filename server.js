@@ -85,8 +85,12 @@ app.use('/auth', authRoutes); // Mount the authRoutes router with '/auth' base p
 app.get('/', (req, res) => {
     res.render('login');
 });
-app.get('/profile', (req, res) => {
-    res.render('profile');
+app.get('/profile', async(req, res) => {
+            const userId = req.user._id;
+        const scores = await Score.find({ userId: userId }); 
+
+        res.render('profile', { user: req.user, scores: scores });
+    // res.render('profile');
 });
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/app', (req, res) => {
@@ -97,23 +101,68 @@ app.get('/app', (req, res) => {
         res.redirect('/auth/login'); // Redirect to login within the '/auth' routes
     }
 });
+// In your server.js 
+app.use(express.json()); // Add this middleware
 
 
 app.post('/save-score', async (req, res) => {
     try {
         // Assuming you have an authenticated user (req.user)
-
+        console.log(req.body);
+        console.log(req.user);
         const newScore = new Score({
             // ... score data ...
-            userId: req.user._id 
+            // userId: req.user._id
+            nameWorkout: req.body.nameWorkout,
+            duration: req.body.duration,
+            repetition: req.body.repetition,
+            date: req.body.date, // Or convert to a Date object if necessary
+            userId: req.user._id
         });
-        await newScore.save(); 
+        // console.log('pre hi');
+        // await newScore.save();
+        // console.log('post hi');
+        console.log('Created Score document:', newScore);  // Log the score
+
+        const savedScore = await newScore.save(); // await the save operation
+        console.log('Saved Score:', savedScore);
+
         res.status(201).send('Score saved!');  
+
     } catch (error) {
         console.error('Error saving score:', error);
         res.status(500).send('Error saving score.');
     }
 });
+
+app.get('/fetch-scores', async (req, res) => {
+    try {
+        const userId = req.user._id;
+        const scores = await Score.find({ userId: userId });
+        res.json(scores); // Send the scores as JSON
+    } catch (error) {
+        console.error('Error fetching scores:', error);
+        res.status(500).send('Error fetching scores.');
+    }
+});
+
+
+// app.get('/profile', passport.authenticate('local'), async (req, res) => {
+//     try {
+//         if (!req.user) {
+//             return res.redirect('/login'); // Redirect if not authenticated
+//         }
+
+//         const userId = req.user._id;
+//         const scores = await Score.find({ userId: userId }); 
+
+//         res.render('profile', { user: req.user, scores: scores });
+//     } catch (error) {
+//         console.error('Error fetching scores:', error);
+//         // Handle error (e.g., display an error message to the user)
+//     }
+// });
+
 
 
 // Start the server

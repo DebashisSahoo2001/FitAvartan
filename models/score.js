@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('../models/user');
 
 const scoreSchema = new mongoose.Schema({
     nameWorkout: { 
@@ -18,9 +19,14 @@ const scoreSchema = new mongoose.Schema({
         default: Date.now
     },
     // For linking to a user if you have authentication
+    // userId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User' // Assuming you have a 'User' model
+    // }
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User' // Assuming you have a 'User' model
+        ref: 'User',  // Reference to the User model
+        required: true
     }
 });
 
