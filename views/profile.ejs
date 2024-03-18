@@ -59,325 +59,357 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Profile Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // const letsStartButton = document.getElementById('letsStartButton');
-        //   letsStartButton.addEventListener('click', function() {
-        //     console.log('Button clicked!'); 
-        //       window.location.href = '/app';
-        //  });
-         document.addEventListener('DOMContentLoaded', function() { 
-    const letsStartButton = document.getElementById('letsStartButton');
-    // ... rest of your code
-    letsStartButton.addEventListener('click', function() {
-            console.log('Button clicked!'); 
-              window.location.href = '/app';
-         });
-         fetch('/fetch-scores')
-                .then(response => response.json())
-                .then(scores => {
-                    const scoresContainer = document.getElementById('scores-container');
-                    scoresContainer.innerHTML = ''; // Clear the "Loading..." message
 
-                    // if (scores.length > 0) {
-                    //     const list = document.createElement('ul');
-                    //     scores.forEach(score => {
-                    //         const item = document.createElement('li');
-                    //         item.textContent = `Workout: ${score.nameWorkout}, Duration: ${score.duration}, Reps: ${score.repetition}, Date: ${score.date}`;
-                    //         list.appendChild(item);
-                    //     });
-                    //     scoresContainer.appendChild(list);
-                    // } else {
-                    //     scoresContainer.textContent = 'No scores found.';
-                    // }
-                
-                
-                
-                
-        //             if (scores.length > 0) {
-        //     const data = scores.map(score => ({
-        //         label: score.nameWorkout,
-        //         value: score.repetition
-        //     }));
-
-        //     const pieChartContainer = document.getElementById('pie-chart');
-        //     const pieChart = new Chart(pieChartContainer, {
-        //         type: 'pie',
-        //         data: {
-        //             labels: data.map(score => score.label),
-        //             datasets: [{
-        //                 data: data.map(score => score.value),
-        //                 backgroundColor: ['red', 'green', 'blue', 'yellow'] // Customize the colors as needed
-        //             }]
-        //         },
-        //         options: {
-        //             responsive: true
-        //         }
-        //     });
-
-        //     scoresContainer.appendChild(pieChartContainer);
-        // } else {
-        //     scoresContainer.textContent = 'No scores found.';
-        // }
-
-
-
-        if (scores.length > 0) {
-      // Create pie chart data
-      const pieChartData = {};
-      scores.forEach(score => {
-        if (pieChartData[score.nameWorkout]) {
-          pieChartData[score.nameWorkout] += score.repetition;
-        } else {
-          pieChartData[score.nameWorkout] = score.repetition;
-        }
+<head>
+  <title>Profile Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // const letsStartButton = document.getElementById('letsStartButton');
+    //   letsStartButton.addEventListener('click', function() {
+    //     console.log('Button clicked!'); 
+    //       window.location.href = '/app';
+    //  });
+    document.addEventListener('DOMContentLoaded', function () {
+      const letsStartButton = document.getElementById('letsStartButton');
+      // ... rest of your code
+      letsStartButton.addEventListener('click', function () {
+        console.log('Button clicked!');
+        window.location.href = '/app';
       });
-      const pieChartLabels = Object.keys(pieChartData);
-      const pieChartValues = Object.values(pieChartData);
+      fetch('/fetch-scores')
+        .then(response => response.json())
+        .then(scores => {
+          const scoresContainer = document.getElementById('scores-container');
+          scoresContainer.innerHTML = ''; // Clear the "Loading..." message
 
-  // Create the pie chart
-  const pieChartCanvas = document.getElementById('pie-chart');
-  const pieChart = new Chart(pieChartCanvas, {
-    type: 'pie',
-    data: {
-          labels: pieChartLabels,
-          datasets: [{
-            data: pieChartValues,
-            backgroundColor: ['red', 'green', 'blue', 'yellow'] // Customize the colors as needed
-          }]
-        },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      legend: {
-        display: true,
-        position: 'bottom',
-      },
-      // Adjust the size of the chart by modifying the width and height properties
-      // You can experiment with different values to achieve the desired size
-      // For example, set width to 200 and height to 150
-      // The default values are width: 400 and height: 300
-      width: 200,
-      height: 150,
-    },
-  });
+          // if (scores.length > 0) {
+          //     const list = document.createElement('ul');
+          //     scores.forEach(score => {
+          //         const item = document.createElement('li');
+          //         item.textContent = `Workout: ${score.nameWorkout}, Duration: ${score.duration}, Reps: ${score.repetition}, Date: ${score.date}`;
+          //         list.appendChild(item);
+          //     });
+          //     scoresContainer.appendChild(list);
+          // } else {
+          //     scoresContainer.textContent = 'No scores found.';
+          // }
 
-  // Populate the latest 5 workout data
-  const scoresContainer = document.getElementById('scores-container');
-  const latestScores = scores.slice(-5).reverse(); // Get the latest 5 scores in reverse order
-  latestScores.forEach(score => {
-    const item = document.createElement('li');
-    item.textContent = `Workout: ${score.nameWorkout}, Duration: ${score.duration}, Reps: ${score.repetition}, Date: ${score.date}`;
-    scoresContainer.appendChild(item);
-  });
 
-      // Create line chart data
-      const lineChartData = {};
-      scores.forEach(score => {
-        const date = new Date(score.date);
-        const weekOfYear = getWeekOfYear(date);
-        if (lineChartData[score.nameWorkout]) {
-          if (lineChartData[score.nameWorkout][weekOfYear]) {
-            lineChartData[score.nameWorkout][weekOfYear] += score.repetition;
+
+
+          //             if (scores.length > 0) {
+          //     const data = scores.map(score => ({
+          //         label: score.nameWorkout,
+          //         value: score.repetition
+          //     }));
+
+          //     const pieChartContainer = document.getElementById('pie-chart');
+          //     const pieChart = new Chart(pieChartContainer, {
+          //         type: 'pie',
+          //         data: {
+          //             labels: data.map(score => score.label),
+          //             datasets: [{
+          //                 data: data.map(score => score.value),
+          //                 backgroundColor: ['red', 'green', 'blue', 'yellow'] // Customize the colors as needed
+          //             }]
+          //         },
+          //         options: {
+          //             responsive: true
+          //         }
+          //     });
+
+          //     scoresContainer.appendChild(pieChartContainer);
+          // } else {
+          //     scoresContainer.textContent = 'No scores found.';
+          // }
+
+
+
+          if (scores.length > 0) {
+            // Create pie chart data
+            const pieChartData = {};
+            scores.forEach(score => {
+              if (pieChartData[score.nameWorkout]) {
+                pieChartData[score.nameWorkout] += score.repetition;
+              } else {
+                pieChartData[score.nameWorkout] = score.repetition;
+              }
+            });
+            const pieChartLabels = Object.keys(pieChartData);
+            const pieChartValues = Object.values(pieChartData);
+
+            // Create the pie chart
+            const pieChartCanvas = document.getElementById('pie-chart');
+            const pieChart = new Chart(pieChartCanvas, {
+              type: 'pie',
+              data: {
+                labels: pieChartLabels,
+                datasets: [{
+                  data: pieChartValues,
+                  backgroundColor: ['red', 'green', 'blue', 'yellow'] // Customize the colors as needed
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                  display: true,
+                  position: 'bottom',
+                },
+                // Adjust the size of the chart by modifying the width and height properties
+                // You can experiment with different values to achieve the desired size
+                // For example, set width to 200 and height to 150
+                // The default values are width: 400 and height: 300
+                width: 200,
+                height: 150,
+              },
+            });
+
+            // Populate the latest 5 workout data
+            const scoresContainer = document.getElementById('scores-container');
+            const latestScores = scores.slice(-5).reverse(); // Get the latest 5 scores in reverse order
+            latestScores.forEach(score => {
+              const item = document.createElement('li');
+              item.textContent = `Workout: ${score.nameWorkout}, Duration: ${score.duration}, Reps: ${score.repetition}, Date: ${score.date}`;
+              scoresContainer.appendChild(item);
+            });
+
+            // Create line chart data
+            const lineChartData = {};
+            scores.forEach(score => {
+              const date = new Date(score.date);
+              const weekOfYear = getWeekOfYear(date);
+              if (lineChartData[score.nameWorkout]) {
+                if (lineChartData[score.nameWorkout][weekOfYear]) {
+                  lineChartData[score.nameWorkout][weekOfYear] += score.repetition;
+                } else {
+                  lineChartData[score.nameWorkout][weekOfYear] = score.repetition;
+                }
+              } else {
+                lineChartData[score.nameWorkout] = {
+                  [weekOfYear]: score.repetition
+                };
+              }
+            });
+            const lineChartLabels = Object.keys(lineChartData);
+            const lineChartDatasets = lineChartLabels.map(label => ({
+              label,
+              data: Object.values(lineChartData[label]),
+              borderColor: getRandomColor(),
+              fill: false
+            }));
+
+            // Create line chart
+            const lineChartContainer = document.getElementById('line-chart');
+            const lineChart = new Chart(lineChartContainer, {
+              type: 'line',
+              data: {
+                labels: getWeekLabels(),
+                datasets: lineChartDatasets
+              },
+              options: {
+                responsive: true
+              }
+            });
+
+            // Create streak maintenance box for monthly view
+            const streakBox = document.getElementById('streak-box');
+            const currentDate = new Date();
+            const streakMonths = 3; // Number of months to display in the streak box
+            const startDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - streakMonths + 1, 1);
+            for (let i = 0; i < streakMonths; i++) {
+              const monthDate = new Date(startDate.getFullYear(), startDate.getMonth() + i, 1);
+              const monthLabel = monthDate.toLocaleString('default', { month: 'long' });
+              const monthBox = document.createElement('div');
+              monthBox.classList.add('month-box');
+              const monthTitle = document.createElement('div');
+              monthTitle.classList.add('month-title');
+              monthTitle.textContent = monthLabel;
+              monthBox.appendChild(monthTitle);
+              for (let j = 1; j <= 31; j++) {
+                const dayDate = new Date(monthDate.getFullYear(), monthDate.getMonth(), j);
+                if (dayDate.getMonth() !== monthDate.getMonth()) {
+                  break; // Stop adding days if we've moved to the next month
+                }
+                const workoutDone = scores.some(score => {
+                  const scoreDate = new Date(score.date);
+                  return getDateString(scoreDate) === getDateString(dayDate);
+                });
+                const streakDay = document.createElement('div');
+                streakDay.classList.add('streak-day');
+                if (workoutDone) {
+                  streakDay.classList.add('workout-done');
+                }
+                monthBox.appendChild(streakDay);
+              }
+              streakBox.appendChild(monthBox);
+            }
+
+            scoresContainer.appendChild(pieChartContainer);
+            scoresContainer.appendChild(lineChartContainer);
           } else {
-            lineChartData[score.nameWorkout][weekOfYear] = score.repetition;
+            scoresContainer.textContent = 'No scores found.';
           }
-        } else {
-          lineChartData[score.nameWorkout] = {
-            [weekOfYear]: score.repetition
-          };
-        }
-      });
-      const lineChartLabels = Object.keys(lineChartData);
-      const lineChartDatasets = lineChartLabels.map(label => ({
-        label,
-        data: Object.values(lineChartData[label]),
-        borderColor: getRandomColor(),
-        fill: false
-      }));
+        })
+        .catch(error => console.error('Error fetching scores:', error));
+    });
 
-      // Create line chart
-      const lineChartContainer = document.getElementById('line-chart');
-      const lineChart = new Chart(lineChartContainer, {
-        type: 'line',
-        data: {
-          labels: getWeekLabels(),
-          datasets: lineChartDatasets
-        },
-        options: {
-          responsive: true
-        }
-      });
 
-  // Create streak maintenance box for monthly view
-  const streakBox = document.getElementById('streak-box');
-  const currentDate = new Date();
-  const streakMonths = 3; // Number of months to display in the streak box
-  const startDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - streakMonths + 1, 1);
-  for (let i = 0; i < streakMonths; i++) {
-    const monthDate = new Date(startDate.getFullYear(), startDate.getMonth() + i, 1);
-    const monthLabel = monthDate.toLocaleString('default', { month: 'long' });
-    const monthBox = document.createElement('div');
-    monthBox.classList.add('month-box');
-    const monthTitle = document.createElement('div');
-    monthTitle.classList.add('month-title');
-    monthTitle.textContent = monthLabel;
-    monthBox.appendChild(monthTitle);
-    for (let j = 1; j <= 31; j++) {
-      const dayDate = new Date(monthDate.getFullYear(), monthDate.getMonth(), j);
-      if (dayDate.getMonth() !== monthDate.getMonth()) {
-        break; // Stop adding days if we've moved to the next month
-      }
-      const workoutDone = scores.some(score => {
-        const scoreDate = new Date(score.date);
-        return getDateString(scoreDate) === getDateString(dayDate);
-      });
-      const streakDay = document.createElement('div');
-      streakDay.classList.add('streak-day');
-      if (workoutDone) {
-        streakDay.classList.add('workout-done');
-      }
-      monthBox.appendChild(streakDay);
+
+    // Helper function to get the week of the year
+    function getWeekOfYear(date) {
+      const yearStart = new Date(date.getFullYear(), 0, 1);
+      const diff = date - yearStart;
+      const dayOfYear = Math.floor(diff / (24 * 60 * 60 * 1000));
+      const weekOfYear = Math.floor(dayOfYear / 7) + 1;
+      return weekOfYear;
     }
-    streakBox.appendChild(monthBox);
-  }
 
-      scoresContainer.appendChild(pieChartContainer);
-      scoresContainer.appendChild(lineChartContainer);
-    } else {
-      scoresContainer.textContent = 'No scores found.';
+    // Helper function to generate random colors
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
     }
-                })
-                .catch(error => console.error('Error fetching scores:', error));
-});
+
+    // Helper function to get week labels for line chart
+    function getWeekLabels() {
+      const currentDate = new Date();
+      const weekLabels = [];
+      for (let i = 6; i >= 0; i--) {
+        const date = new Date(currentDate);
+        date.setDate(currentDate.getDate() - i);
+        const weekOfYear = getWeekOfYear(date);
+        weekLabels.push(`Week ${weekOfYear}`);
+      }
+      return weekLabels;
+    }
+
+    // Helper function to get the date string in "YYYY-MM-DD" format
+    function getDateString(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+  </script>
+  <script>//calorie count streak and duration
+    // scores.sort((a, b) => new Date(a.date).setHours(0, 0, 0, 0) - new Date(b.date).setHours(0, 0, 0, 0));
+    document.addEventListener('DOMContentLoaded', () => {
+      // Fetch the scores and calculate total calorie burn, streak, and duration
+      fetch('/fetch-scores')//fetch-scores is route in server.js
+        .then(response => response.json())
+        .then(scores => {
+          const totalCalorieBurn = scores.reduce((total, score) => {
+            if (score.nameWorkout === 'Squat') {
+              return total + score.repetition * 0.32;
+            } else if (score.nameWorkout === 'Push Up') {
+              return total + score.repetition * 0.4;
+            } else {
+              return total;
+            }
+          }, 0);
+
+          scores.sort((a, b) => {
+            return new Date(a.date) - new Date(b.date);
+          });
+          let maxStreak = 0; // Variable to store the maximum streak count
+          let currentStreak = 0; // Variable to store the current streak count
+          let totalDuration = 0;
+
+          scores.forEach((score, currentIndex) => {
+            if (currentIndex > 0 && isConsecutiveDate(score, scores[currentIndex - 1])) {
+              // If it's the first score or the date is consecutive
+              currentStreak++;
+            }
+            else if (currentIndex > 0 && isequalDate(score, scores[currentIndex - 1])) {
+              // Same date, continue current streak 
+            }
+            else {
+              // If the streak is broken
+              // Start counting a new streak
+              currentStreak = 1;
+            }
+
+            // if (currentStreak > maxStreak) {
+            //   maxStreak = currentStreak;
+            // }
+            maxStreak = Math.max(maxStreak, currentStreak);
+            // console.log("Index:", currentIndex, "Current Streak:", currentStreak, "Max Streak:", maxStreak, score.date);
+
+            // Calculate total duration
+            totalDuration += parseFloat(score.duration);
+          });
 
 
+          const hours = Math.floor(totalDuration / 60);
+          const minutes = Math.floor(totalDuration % 60);
 
-// Helper function to get the week of the year
-function getWeekOfYear(date) {
-  const yearStart = new Date(date.getFullYear(), 0, 1);
-  const diff = date - yearStart;
-  const dayOfYear = Math.floor(diff / (24 * 60 * 60 * 1000));
-  const weekOfYear = Math.floor(dayOfYear / 7) + 1;
-  return weekOfYear;
-}
+          // Format the duration string
+          const formattedDuration = `${hours}h ${minutes}m`;
 
-// Helper function to generate random colors
-function getRandomColor() {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
+          // Update the HTML elements with the calculated values
+          document.getElementById('calorieburn').textContent = totalCalorieBurn.toFixed(2);
+          document.getElementById('streak').textContent = maxStreak;
+          document.getElementById('duration').textContent = formattedDuration;
+        })
+        .catch(error => console.error('Error fetching scores:', error));
+    });
 
-// Helper function to get week labels for line chart
-function getWeekLabels() {
-  const currentDate = new Date();
-  const weekLabels = [];
-  for (let i = 6; i >= 0; i--) {
-    const date = new Date(currentDate);
-    date.setDate(currentDate.getDate() - i);
-    const weekOfYear = getWeekOfYear(date);
-    weekLabels.push(`Week ${weekOfYear}`);
-  }
-  return weekLabels;
-}
+    // Function to check if two dates are consecutive
+    function isConsecutiveDate(date1, date2) {
+      const oneDay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+      const diffInDays = Math.round(
+        Math.abs((new Date(date1.date) - new Date(date2.date)) / oneDay)
+      );
+      return diffInDays === 1;
+    }
+    // Function to check if dates difference less than a day
+    function isequalDate(date1, date2) {
+      const oneDay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+      const diffInDays = Math.round(
+        Math.abs((new Date(date1.date) - new Date(date2.date)) / oneDay)
+      );
+      return diffInDays <= 1;
+    }
+  </script>
+  <style>
+    #streak-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
 
-// Helper function to get the date string in "YYYY-MM-DD" format
-function getDateString(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
+    .streak-day {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      margin: 2px;
+    }
 
-     </script>
-     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-  // Fetch the scores and calculate total calorie burn, streak, and duration
-  fetch('/fetch-scores')//fetch-scores is route in server.js
-    .then(response => response.json())
-    .then(scores => {
-      const totalCalorieBurn = scores.reduce((total, score) => {
-        if (score.nameWorkout === 'Squat') {
-          return total + score.repetition * 0.32;
-        } else if (score.nameWorkout === 'Push Up') {
-          return total + score.repetition * 7;
-        } else {
-          return total;
-        }
-      }, 0);
+    .streak-day.workout-done {
+      background-color: green;
+    }
 
-      let streak = 0;
-      let maxStreak = 0;
-      let totalDuration = 0;
+    .chart-container {
+      display: flex;
+      flex-direction: row;
+    }
 
-      scores.forEach(score => {
-        // Calculate streak
-        if (streak === 0 || (new Date(score.date) - new Date(scores[scores.indexOf(score) - 1].date)) / (1000 * 60 * 60 * 24) >= 1) {
-          streak++;
-        } 
-        else {
-          streak = 1;
-        }
-        if (streak > maxStreak) {
-          maxStreak = streak;
-        }
+    .chart-wrapper {
+      flex: 1;
+      margin-right: 20px;
+      /* Adjust the margin as needed */
+    }
 
-        // Calculate total duration
-        totalDuration += parseFloat(score.duration);
-      });
-
-      const hours = Math.floor(totalDuration / 60);
-      const minutes = Math.floor(totalDuration % 60);
-
-      // Format the duration string
-      const formattedDuration = `${hours}h ${minutes}m`;
-
-      // Update the HTML elements with the calculated values
-      document.getElementById('calorieburn').textContent = totalCalorieBurn.toFixed(2);
-      document.getElementById('streak').textContent = maxStreak;
-      document.getElementById('duration').textContent = formattedDuration;
-    })
-    .catch(error => console.error('Error fetching scores:', error));
-});
-     </script>
-     <style>
-      #streak-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.streak-day {
-  width: 30px;
-  height: 30px;
-  border: 1px solid #ccc;
-  display: inline-block;
-  margin: 2px;
-}
-
-.streak-day.workout-done {
-  background-color: green;
-}
-
-.chart-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.chart-wrapper {
-  flex: 1;
-  margin-right: 20px; /* Adjust the margin as needed */
-}
-
-/* .workout-data {
+    /* .workout-data {
   flex: 1;
 }
 
@@ -385,7 +417,7 @@ function getDateString(date) {
   margin-top: 0;
 } */
 
-.workout-data {
+    .workout-data {
       flex: 1;
       background-color: #f7fafc;
       padding: 20px;
@@ -414,42 +446,43 @@ function getDateString(date) {
     .workout-data li:last-child {
       margin-bottom: 0;
     }
-     </style>
-  </head>
-  <body class="min-h-screen">
-    <div class="flex min-h-screen">
-      <div class="w-1/4 bg-gray-200">
-        <div class="p-4">
-          <h1 class="text-2xl font-bold mb-4">Overview</h1>
-          <ul class="mb-4">
-            <li class="py-2">Schedule</li>
-            <li class="py-2">Performance</li>
-          </ul>
-          <div class="flex justify-center ">
-            <button class="bg-blue-500 text-white py-2 px-4 rounded">Sign Out</button>
-          </div>
+  </style>
+</head>
+
+<body class="min-h-screen">
+  <div class="flex min-h-screen">
+    <div class="w-1/4 bg-gray-200">
+      <div class="p-4">
+        <h1 class="text-2xl font-bold mb-4">Overview</h1>
+        <ul class="mb-4">
+          <li class="py-2">Schedule</li>
+          <li class="py-2">Performance</li>
+        </ul>
+        <div class="flex justify-center ">
+          <button class="bg-blue-500 text-white py-2 px-4 rounded">Sign Out</button>
         </div>
       </div>
-      <div class="w-3/4 bg-white p-8">
-        <div class="flex justify-between mb-8">
-          <div class="w-1/4 bg-blue-500 text-white p-4 mr-4">
-            <h2 class="text-2xl font-bold">Streak</h2>
-            <p id="streak" class="text-4xl font-bold">10</p>
-          </div>
-          <div class="w-1/4 bg-blue-500 text-white p-4 mr-4">
-            <h2 class="text-2xl font-bold">Calorie Burn</h2>
-            <p id="calorieburn" class="text-4xl font-bold">500</p>
-          </div>
-          <div class="w-1/4 bg-blue-500 text-white p-4 mr-4">
-            <h2 class="text-2xl font-bold">Duration</h2>
-            <p id="duration" class="text-4xl font-bold">2 hours</p>
-          </div>
-          <div class="w-1/4 bg-blue-500 text-white p-4">
-            <h2 class="text-2xl font-bold">Accuracy</h2>
-            <p class="text-4xl font-bold">90%</p>
-          </div>
+    </div>
+    <div class="w-3/4 bg-white p-8">
+      <div class="flex justify-between mb-8">
+        <div class="w-1/4 bg-blue-500 text-white p-4 mr-4">
+          <h2 class="text-2xl font-bold">Streak</h2>
+          <p id="streak" class="text-4xl font-bold">10</p>
         </div>
-        <!-- <div id="scores-container">
+        <div class="w-1/4 bg-blue-500 text-white p-4 mr-4">
+          <h2 class="text-2xl font-bold">Calorie Burn</h2>
+          <p id="calorieburn" class="text-4xl font-bold">500</p>
+        </div>
+        <div class="w-1/4 bg-blue-500 text-white p-4 mr-4">
+          <h2 class="text-2xl font-bold">Duration</h2>
+          <p id="duration" class="text-4xl font-bold">2 hours</p>
+        </div>
+        <div class="w-1/4 bg-blue-500 text-white p-4">
+          <h2 class="text-2xl font-bold">Accuracy</h2>
+          <p class="text-4xl font-bold">90%</p>
+        </div>
+      </div>
+      <!-- <div id="scores-container">
           Loading scores... 
       </div> -->
       <div class="chart-container">
@@ -465,10 +498,11 @@ function getDateString(date) {
       <canvas id="line-chart"></canvas>
       <div id="streak-box"></div>
       <!-- <canvas id="pie-chart"></canvas> -->
-        <div class="flex justify-center">
-          <button id="letsStartButton" class="bg-blue-500 text-white py-2 px-4 rounded">Let's Start</button>
-        </div>
+      <div class="flex justify-center">
+        <button id="letsStartButton" class="bg-blue-500 text-white py-2 px-4 rounded">Let's Start</button>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
