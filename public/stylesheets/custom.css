@@ -164,3 +164,46 @@
       margin-top: 0;
     }
   }
+
+
+  .text-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    margin-bottom: 20px;
+  }
+  
+  .letter {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 2px;
+    /* animation: bounce 0.5s infinite alternate;
+    animation-delay: calc(0.1s * var(--delay));
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both; */
+    animation: fade-in 2s infinite forwards;
+    animation-delay: calc(0.1s * var(--delay));
+  }
+  /* @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  } */
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

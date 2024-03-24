@@ -92,8 +92,8 @@ export default class PoseHandler {
         JSON.stringify(poseDetectorConfig.detectorConfig)
     )
       return;
-    this.nameModel = poseDetectorConfig.model;
-    this.model = poseDetection.SupportedModels[this.nameModel];
+    this.nameModel = poseDetectorConfig.model;//poseDetectorConfig.model=MoveNet
+    this.model = poseDetection.SupportedModels[this.nameModel];//take this model from imported posedetection of tensorflow(Incorporated MoveNet)
     this.detectorConfig = poseDetectorConfig.detectorConfig;
     this.detector = await poseDetection.createDetector(
       this.model,
