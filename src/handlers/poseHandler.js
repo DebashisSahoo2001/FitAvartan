@@ -89,7 +89,7 @@ export default class PoseHandler {
     if (
       this.nameModel === poseDetectorConfig.model &&
       JSON.stringify(this.detectorConfig) ===
-        JSON.stringify(poseDetectorConfig.detectorConfig)
+      JSON.stringify(poseDetectorConfig.detectorConfig)
     )
       return;
     this.nameModel = poseDetectorConfig.model;//poseDetectorConfig.model=MoveNet
@@ -182,10 +182,16 @@ export default class PoseHandler {
               result[0].confidence > result[1].confidence
                 ? result[0].class
                 : result[1].class;
+            console.log("res0class:", result[0].class, "res0confi:", result[0].confidence);
+            console.log("res1class:", result[1].class, "res1confi:", result[1].confidence);
             // Render confidence predict class with progress bar
-            this.additionalElem.confidenceElem.style.clipPath = `inset(${
-              (1 - result[1].confidence.toFixed(6)) * 100
-            }% 0 0 0)`;
+            if (result[0].class == "Other") {
+              this.additionalElem.confidenceElem.style.clipPath = `inset(${(1 - result[1].confidence.toFixed(6)) * 100
+                }% 0 0 0)`;
+            } else {
+              this.additionalElem.confidenceElem.style.clipPath = `inset(${(1 - result[0].confidence.toFixed(6)) * 100
+                }% 0 0 0)`;
+            }
           });
         }
       }

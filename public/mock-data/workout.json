@@ -1,6 +1,6 @@
 {
-  "nameWorkout": ["Push Up", "Squat"],
-  "slugWorkout": ["push-up", "squat"],
+  "nameWorkout": ["Push Up", "Squat","Biceps Curl"],
+  "slugWorkout": ["push-up", "squat", "biceps_curl"],
   "duration": ["1 Minutes", "3 Minutes", "5 Minutes", "7 Minutes"],
   "settingsConfig": {
     "currWorkout": "None",
