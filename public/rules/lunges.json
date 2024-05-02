@@ -1,0 +1,56 @@
+{
+    "poseDetectorConfig": {
+      "model": "MoveNet",
+      "detectorConfig": {},
+      "estimationConfig": {}
+    },
+    "classifierConfig": {
+      "path": "./tfjs-model/lunges/model.json",
+      "label": ["Lunges","Other"]
+    },
+    "rulesCountConfig": {
+      "nameWorkout": "Lunges",
+      "nameStage": ["leftUp", "leftDown","rightUp","rightDown"],
+      "pathImageStage": ["./img/iconmonstr-caret-up-circle-filled-64.png", "./img/iconmonstr-caret-down-circle-filled-64.png","./img/iconmonstr-caret-up-circle-filled-64.png", "./img/iconmonstr-caret-down-circle-filled-64.png"],
+      "pathAudioStage": ["./audio/go-up-from-google-translate.webm", "./audio/go-down-from-google-translate.webm","./audio/go-up-from-google-translate.webm", "./audio/go-down-from-google-translate.webm"],
+      "anglePoint": {
+        "11": {
+          "spouseIdx": [13, 5],
+          "rangeAngle": [
+            { "min": 150, "max": 180 },
+            { "min": 105, "max": 155 },
+            { "min": 150, "max": 180 },
+            { "min": 160, "max": 180 }
+          ]
+        },
+        "12": {
+          "spouseIdx": [14, 6],
+          "rangeAngle": [
+            { "min": 150, "max": 180 },
+            { "min": 160, "max": 180 },
+            { "min": 150, "max": 180 },
+            { "min": 105, "max": 155 }
+          ]
+        },
+        "13": {
+          "spouseIdx": [11, 15],
+          "rangeAngle": [
+            { "min": 150, "max": 180 },
+            { "min": 90, "max": 160 },
+            { "min": 150, "max": 180 },
+            { "min": 90, "max": 160 }
+          ]
+        },
+        "14": {
+          "spouseIdx": [12, 16],
+          "rangeAngle": [
+            { "min": 150, "max": 180 },
+            { "min": 90, "max": 160 },
+            { "min": 150, "max": 180 },
+            { "min": 90, "max": 160 }
+          ]
+        }
+      }
+    }
+  }
+  

@@ -1,6 +1,6 @@
 {
-  "nameWorkout": ["Push Up", "Squat","Biceps Curl"],
-  "slugWorkout": ["push-up", "squat", "biceps_curl"],
+  "nameWorkout": ["Push Up", "Squat","Biceps Curl","Shoulder Press","Lunges","Lateral Raise"],
+  "slugWorkout": ["push-up", "squat", "biceps_curl","soulder_press","lunges","lateral_raise"],
   "duration": ["1 Minutes", "3 Minutes", "5 Minutes", "7 Minutes"],
   "settingsConfig": {
     "currWorkout": "None",

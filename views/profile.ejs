@@ -147,7 +147,7 @@
                 labels: pieChartLabels,
                 datasets: [{
                   data: pieChartValues,
-                  backgroundColor: ['red', 'green', 'blue', 'yellow'] // Customize the colors as needed
+                  backgroundColor: pieChartValues.map(() => getRandomColor()) // Customize the colors as needed
                 }]
               },
               options: {
